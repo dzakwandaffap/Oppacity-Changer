@@ -1,0 +1,73 @@
+
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menampilkan Gambar dan Mengatur Opasitas</title>
+    <style>
+        #gambar {
+            max-width: 300px;
+            max-height: 300px;
+            margin-top: 20px;
+            transition: opacity 0.3s; /* Transisi halus untuk perubahan opasitas */
+        }
+    </style>
+</head>
+<body>
+    <h1>Pilih Gambar dan Opasitas</h1>
+    
+    <label for="pilihanGambar">Pilih gambar:</label>
+    <select id="pilihanGambar">
+        <option value="">Pilih gambar...</option>
+        <option value="img/dedy.png">dedy</option>
+        <option value="img/erna.jpg">erna</option>
+        <option value="img/edo.jpg">edo</option>
+    </select>
+
+    <label for="oppacity">Pilih opasitas:</label>
+    <select id="oppacity">
+        <option value="1">100% </option>
+        <option value="0.5">50%</option>
+        <option value="0.2">20%</option>
+    </select>
+    
+    <img id="gambar" >
+
+    <script>
+        // Ambil elemen select dan gambar
+        const selectGambar = document.getElementById('pilihanGambar');
+        const selectOpasitas = document.getElementById('oppacity');
+        const gambarElement = document.getElementById('gambar');
+        
+        // Fungsi untuk memperbarui gambar
+        function updateGambar() {
+            const gambarValue = selectGambar.value;
+            if (gambarValue) {
+                gambarElement.src = gambarValue;
+                gambarElement.alt = 'Gambar: ' + gambarValue;
+            } else {
+                gambarElement.src = '';
+                gambarElement.alt = 'Gambar akan ditampilkan di sini';
+            }
+        }
+        
+        // Fungsi untuk memperbarui opasitas
+        function updateOpasitas() {
+            const opasitasValue = selectOpasitas.value;
+            gambarElement.style.opacity = opasitasValue;
+        }
+        
+        // Tambahkan event listener untuk perubahan pilihan gambar
+        selectGambar.addEventListener('change', function() {
+            updateGambar();
+            updateOpasitas(); // Update opasitas jika gambar diubah
+        });
+        
+        // Tambahkan event listener untuk perubahan opasitas
+        selectOpasitas.addEventListener('change', updateOpasitas);
+    </script>
+</body>
+</html>
